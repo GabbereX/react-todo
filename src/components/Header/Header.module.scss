@@ -1,0 +1,38 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  background: var(--orange);
+  &Container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  &Logo {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 25px;
+    &Text {
+      padding: 5px 15px 0 10px;
+      font-weight: 600;
+    }
+  }
+  &Auth {
+    padding: 7px 15px 5px 15px;
+    color: #fff;
+    font-weight: 600;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease;
+    &:hover {
+      color: var(--orange);
+      background: #fff;
+    }
+    &:active {
+      color: var(--gray);
+      background: var(--yellow);
+    }
+  }
+}

@@ -1,0 +1,10 @@
+@include addFont(Montserrat, Regular, montserrat-regular, 400, normal);
+@include addFont(Montserrat, SemiBold, montserrat-semibold, 600, normal);
+@include addFont(Montserrat, Bold, montserrat-bold, 700, normal);
+@include addFont(Montserrat, ExtraBold, montserrat-extrabold, 700, normal);
+
+html {
+  font-family: 'Montserrat', sans-serif, Arial, Helvetica;
+  color: var(--gray);
+  font-size: 13px;
+}

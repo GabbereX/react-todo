@@ -1,0 +1,11 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+  background: var(--orange);
+  &Container {
+    color: white;
+    font-size: 14px;
+  }
+}
