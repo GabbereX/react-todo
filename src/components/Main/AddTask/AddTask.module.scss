@@ -1,0 +1,11 @@
+.addTodo {
+  &Input {
+    &Container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  &Textarea {
+    resize: none;
+  }
+}

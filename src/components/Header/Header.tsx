@@ -12,7 +12,7 @@ const Header: FC = () => {
             Simple Todo
           </div>
         </div>
-        <a href='#' className={styles.headerAuth}>
+        <a href='http://localhost:3000/#' className={styles.headerAuth}>
           Login
         </a>
       </div>
