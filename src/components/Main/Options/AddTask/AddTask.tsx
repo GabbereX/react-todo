@@ -8,14 +8,11 @@ const AddTask: FC = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-
     const result = {
       username: username,
       email: email,
       message: message,
     };
-
-    console.log(result);
   };
 
   return (

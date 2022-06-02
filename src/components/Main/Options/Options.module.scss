@@ -1,0 +1,8 @@
+.options {
+  display: flex;
+  margin-bottom: 30px;
+  & > div:nth-child(1) {
+    margin-right: 20px;
+  }
+
+}

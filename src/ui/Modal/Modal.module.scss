@@ -1,0 +1,46 @@
+.modal {
+  &Enter {
+    opacity: 0;
+    transform: scale(0.9);
+    &Active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 300ms, transform 300ms;
+    }
+  }
+  &Exit {
+    opacity: 1;
+    &Active {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 300ms, transform 300ms;
+    }
+  }
+  &Container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: rgb(0%, 0%, 0%, 0.5);
+    cursor: pointer;
+  }
+  &Content {
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    max-width: 500px;
+    height: 350px;
+    background: #fff;
+    border-radius: 10px;
+    cursor: default;
+  }
+  &Close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+}

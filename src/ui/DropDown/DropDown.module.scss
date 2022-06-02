@@ -1,0 +1,39 @@
+.dropDown {
+  &Enter {
+    opacity: 0;
+    transform: scale(0.9);
+    &Active {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 300ms, transform 300ms;
+    }
+  }
+  &Exit {
+    opacity: 1;
+    &Active {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 300ms, transform 300ms;
+    }
+  }
+}
+
+.button {
+  text-align: center;
+  &DropDown {
+    &Enter {
+      transform: scale(1, 1);
+      &Active {
+        transform: scale(0, 0);
+        transition: transform 200ms;
+      }
+    }
+    &Exit {
+      transform: scale(0, 0);
+      &Active {
+        transform: scale(1, 1);
+        transition: transform 200ms;
+      }
+    }
+  }
+}

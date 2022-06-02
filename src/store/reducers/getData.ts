@@ -1,6 +1,6 @@
-import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
-import {ITasks} from "../../interfaces/ITasks";
+import { ITasks } from '../../interfaces/ITasks';
 
 interface IInitialState {
   message: ITasks | string;
@@ -14,16 +14,20 @@ const initialState: IInitialState = {
   status: '',
 };
 
-export const fetchAPI = createAsyncThunk('data/fetchAPI', async (_, thunkAPI) => {
-  try {
-    const response = await axios.get(
-      'https://uxcandy.com/~shapoval/test-task-backend/v2/?developer=Gabber'
-    );
-    return response.data
-  } catch (err: any | AxiosError) {
-    return thunkAPI.rejectWithValue('Ошибка! Сервер не отвечает, попробуйте позже');
+export const fetchAPI = createAsyncThunk(
+  'data/fetchAPI',
+  (_, { rejectWithValue }) => {
+    try {
+      return axios
+        .get(
+          'https://uxcandy.com/~shapoval/test-task-backend/v2/?developer=Gabber'
+        )
+        .then(data => data.data);
+    } catch (err: any | AxiosError) {
+      return rejectWithValue('Ошибка! Сервер не отвечает, попробуйте позже');
+    }
   }
-});
+);
 
 const getData = createSlice({
   name: 'getData',
@@ -33,7 +37,10 @@ const getData = createSlice({
     [fetchAPI.pending.type]: state => {
       state.isLoading = true;
     },
-    [fetchAPI.fulfilled.type]: (state, action: PayloadAction<IInitialState>) => {
+    [fetchAPI.fulfilled.type]: (
+      state,
+      action: PayloadAction<IInitialState>
+    ) => {
       state.isLoading = false;
       state.status = action.payload.status;
       state.message = action.payload.message;

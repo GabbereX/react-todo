@@ -1,0 +1,13 @@
+.defaultButton {
+  padding: 10px 20px 8px 20px;
+  color: var(--orange);
+  font-weight: 600;
+  font-size: 20px;
+  background: #fff;
+  border-radius: 7px;
+  transition: background 0.3s ease, color 0.3s ease;
+  &:hover {
+    color: #fff;
+    background: var(--orange);
+  }
+}

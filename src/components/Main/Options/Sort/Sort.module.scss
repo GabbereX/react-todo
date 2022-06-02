@@ -1,0 +1,34 @@
+.sort {
+  &Container {
+    display: flex;
+    padding: 5px 10px;
+    height: 43px;
+    border: 1px solid var(--orange);
+    border-radius: 7px;
+  }
+  &AscDescButton {
+    padding-right: 15px;
+    margin-right: 15px;
+    background: none;
+    border: none;
+    border-right: 1px solid var(--orange);
+  }
+  &Sort {
+    display: flex;
+    flex-direction: column;
+    //justify-content: flex-start;
+    max-height: 29px;
+    &Button {
+      max-height: 15px;
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 14px;
+      background: none;
+      border: none;
+      transition: color 0.3s ease;
+      &:hover {
+        color: var(--red);
+      }
+    }
+  }
+}
