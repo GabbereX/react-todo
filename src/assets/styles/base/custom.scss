@@ -18,3 +18,12 @@ button {
 ul, li {
   list-style: none;
 }
+
+textarea {
+  resize: none;
+
+}
+
+input, textarea {
+  font: inherit;
+}

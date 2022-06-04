@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 import styles from './SortList.module.scss';
 
 interface IProps {
-  sortList: Array<string>;
-  handlerClick: (id: number) => void;
+  sortList: Array<{ name: string }>;
+  handleClick: (id: number) => void;
   sortChechedId: number;
 }
 
-const SortList: FC<IProps> = ({ sortList, handlerClick, sortChechedId }) => {
+const SortList: FC<IProps> = ({ sortList, handleClick, sortChechedId }) => {
   return (
     <div className={styles.sort}>
       <ul className={styles.sortList}>
@@ -15,15 +15,11 @@ const SortList: FC<IProps> = ({ sortList, handlerClick, sortChechedId }) => {
           return (
             <li
               key={index}
-              onClick={() => {
-                setTimeout(() => {
-                  handlerClick(index);
-                }, 100);
-              }}
+              onClick={() => handleClick(index)}
               className={styles.sortItem}
               style={{ background: sortChechedId === index ? '#ffe368' : '' }}
             >
-              {sortItem}
+              {sortItem.name}
             </li>
           );
         })}

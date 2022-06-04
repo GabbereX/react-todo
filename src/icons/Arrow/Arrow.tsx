@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Arrow.module.scss';
 
-const Arrow: FC<{ askDesk: string }> = ({ askDesk }) => {
+const Arrow: FC<{ askDesk: boolean }> = ({ askDesk }) => {
   return (
     <svg
       version='1.1'
@@ -9,7 +9,7 @@ const Arrow: FC<{ askDesk: string }> = ({ askDesk }) => {
       viewBox='0 0 300.003 300.003'
       fill=''
       className={styles.arrow}
-      style={{ transform: askDesk === 'ask' ? '' : 'rotate(180deg)' }}
+      style={{ transform: askDesk ? '' : 'rotate(180deg)' }}
     >
       <path
         d='M150,0C67.159,0,0.001,67.159,0.001,150c0,82.838,67.157,150.003,149.997,150.003S300.002,232.838,300.002,150

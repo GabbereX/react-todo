@@ -1,8 +1,14 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import getData from './reducers/getData';
+import postData from './reducers/postData';
+import addTaskFields from './reducers/forms/addTaskFields';
+import params from './reducers/params';
 
 const rootReducer = combineReducers({
   getData,
+  postData,
+  addTaskFields,
+  params,
 });
 
 const setupStore = () => {

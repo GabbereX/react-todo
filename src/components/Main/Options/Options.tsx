@@ -10,6 +10,7 @@ const Options: FC = () => {
       <Modal
         button={<button className='defaultButton'>Новое задание</button>}
         keyValue={'newTask'}
+        title={'Добавить новое задание'}
       >
         <AddTask />
       </Modal>

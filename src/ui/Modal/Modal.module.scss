@@ -30,17 +30,28 @@
     position: relative;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
     padding: 30px;
     max-width: 500px;
-    height: 350px;
     background: #fff;
+    transform: translate(-50%, -50%);
     border-radius: 10px;
     cursor: default;
+  }
+  &Title {
+    margin-bottom: 20px;
   }
   &Close {
     position: absolute;
     right: 20px;
     top: 20px;
+    background: none;
+    border: none;
   }
+}
+
+.success {
+  font-size: 18px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--green);
 }

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 import { ITasks } from '../../interfaces/ITasks';
+import { IParams } from '../../interfaces/IParams';
 
 interface IInitialState {
   message: ITasks | string;
@@ -16,13 +17,20 @@ const initialState: IInitialState = {
 
 export const fetchAPI = createAsyncThunk(
   'data/fetchAPI',
-  (_, { rejectWithValue }) => {
+  async ({ page, sortField, sortDirection }: IParams, { rejectWithValue }) => {
+    const link =
+      'https://uxcandy.com/~shapoval/test-task-backend/v2/?developer=Gabber';
+    const pageParam = page !== 1 ? `&page=${page}` : '';
+    const sortFieldParam = `&sort_field=${sortField}`;
+    const sortDirectionParam = `&sort_direction=${
+      sortDirection ? 'desc' : 'asc'
+    }`;
+
     try {
-      return axios
-        .get(
-          'https://uxcandy.com/~shapoval/test-task-backend/v2/?developer=Gabber'
-        )
-        .then(data => data.data);
+      const response = await axios.get(
+        link + pageParam + sortFieldParam + sortDirectionParam
+      );
+      return response.data;
     } catch (err: any | AxiosError) {
       return rejectWithValue('Ошибка! Сервер не отвечает, попробуйте позже');
     }

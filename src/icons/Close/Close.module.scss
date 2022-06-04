@@ -1,0 +1,11 @@
+.close {
+  width: 30px;
+  fill: var(--orange);
+  transition: fill 0.3s ease, transform 0.3s ease;
+  &:hover {
+    fill: var(--red);
+  }
+  &:active {
+    transform: scale(0.95, 0.95);
+  }
+}

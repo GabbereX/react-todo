@@ -8,20 +8,35 @@ import React, {
 } from 'react';
 import styles from './Modal.module.scss';
 import { CSSTransition } from 'react-transition-group';
+import Close from '../../icons/Close/Close';
+import { useAppSelector } from '../../hooks/redux';
 
 interface IModalProps {
   button: ReactNode;
   children: ReactNode;
   keyValue: string;
+  title: string;
 }
 
-const Modal: FC<IModalProps> = ({ button, children, keyValue }) => {
+const Modal: FC<IModalProps> = ({ button, children, keyValue, title }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const listRef: RefObject<HTMLDivElement> = createRef();
 
+  const { status } = useAppSelector(state => state.postData);
+
   const handleOpen = () => {
     setIsModalOpen(!isModalOpen);
+  };
+
+  const autoClose = () => {
+    setTimeout(() => {
+      setIsModalOpen(false);
+    }, 1000);
+
+    return (
+      <div className={styles.success}>Новое задание успешно добавлено</div>
+    );
   };
 
   useEffect(() => {
@@ -54,13 +69,20 @@ const Modal: FC<IModalProps> = ({ button, children, keyValue }) => {
       >
         <div ref={listRef} className={styles.modalContainer}>
           <div className={styles.modalContent}>
-            {children}
-            <button
-              className={styles.modalClose}
-              onClick={() => setIsModalOpen(false)}
-            >
-              X
-            </button>
+            {status === 'ok' ? (
+              autoClose()
+            ) : (
+              <>
+                <h2 className={styles.modalTitle}>{title}</h2>
+                {children}
+                <button
+                  className={styles.modalClose}
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  <Close />
+                </button>
+              </>
+            )}
           </div>
         </div>
       </CSSTransition>

@@ -1,0 +1,13 @@
+.spinPreloader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: calc(100% + 60px);
+  height: calc(100% + 102px);
+  left: -30px;
+  top: -72px;
+  background: rgb(0%, 0%, 0%, 0.5);
+  border-radius: 10px;
+  z-index: 101;
+}
