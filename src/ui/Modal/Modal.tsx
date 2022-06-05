@@ -10,24 +10,29 @@ import styles from './Modal.module.scss';
 import { CSSTransition } from 'react-transition-group';
 import Close from '../../icons/Close/Close';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { setStatusPostData } from '../../store/reducers/postData';
 import { fetchAPI } from '../../store/reducers/getData';
-import { setClearTaskFields } from '../../store/reducers/forms/addTaskFields';
 
 interface IModalProps {
   button: ReactNode;
   children: ReactNode;
   keyValue: string;
   title: string;
+  clearStatusAndFields: () => void;
+  status: string;
 }
 
-const Modal: FC<IModalProps> = ({ button, children, keyValue, title }) => {
+const Modal: FC<IModalProps> = ({
+  button,
+  children,
+  keyValue,
+  title,
+  clearStatusAndFields,
+  status
+}) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const listRef: RefObject<HTMLDivElement> = createRef();
   const dispatch = useAppDispatch();
   const params = useAppSelector(state => state.params);
-
-  const { status } = useAppSelector(state => state.postData);
 
   const handleOpen = () => {
     setIsModalOpen(!isModalOpen);
@@ -38,10 +43,7 @@ const Modal: FC<IModalProps> = ({ button, children, keyValue, title }) => {
       setTimeout(() => {
         setIsModalOpen(false);
       }, 1000);
-      setTimeout(() => {
-        dispatch(setStatusPostData(''));
-      }, 1300);
-      dispatch(setClearTaskFields());
+      clearStatusAndFields();
       dispatch(fetchAPI(params));
     }
   }, [status]);

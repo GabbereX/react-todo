@@ -1,7 +1,3 @@
-export interface Map {
-  [key: string]: string;
-}
-
 export interface ITask {
   id?: number;
   username?: string;

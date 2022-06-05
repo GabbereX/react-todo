@@ -1,14 +1,9 @@
 import { ITask } from '../../interfaces/ITasks';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
+import { IPostDataAnswer } from '../../interfaces/IPostDataAnswer';
 
-interface IInitialState {
-  message: ITask | string;
-  isLoading: boolean;
-  status: string;
-}
-
-const initialState: IInitialState = {
+const initialState: IPostDataAnswer = {
   message: {},
   isLoading: false,
   status: '',
@@ -47,7 +42,10 @@ const postData = createSlice({
     [postAPI.pending.type]: state => {
       state.isLoading = true;
     },
-    [postAPI.fulfilled.type]: (state, action: PayloadAction<IInitialState>) => {
+    [postAPI.fulfilled.type]: (
+      state,
+      action: PayloadAction<IPostDataAnswer>
+    ) => {
       state.isLoading = false;
       state.status = action.payload.status;
       state.message = action.payload.message;
