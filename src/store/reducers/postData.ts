@@ -18,18 +18,17 @@ export const postAPI = createAsyncThunk(
   'data/postAPI',
   async (task: ITask, { rejectWithValue }) => {
     try {
-      const response = await axios
-        .post(
-          'https://uxcandy.com/~shapoval/test-task-backend/v2/create?developer=Gabber',
-          task,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        )
+      const response = await axios.post(
+        'https://uxcandy.com/~shapoval/test-task-backend/v2/create?developer=Gabber',
+        task,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
 
-      return response.data
+      return response.data;
     } catch (err: any | AxiosError) {
       return rejectWithValue('Ошибка! Сервер не отвечает, попробуйте позже');
     }
@@ -39,7 +38,11 @@ export const postAPI = createAsyncThunk(
 const postData = createSlice({
   name: 'postData',
   initialState,
-  reducers: {},
+  reducers: {
+    setStatusPostData(state, action: PayloadAction<string>) {
+      state.status = action.payload;
+    },
+  },
   extraReducers: {
     [postAPI.pending.type]: state => {
       state.isLoading = true;
@@ -57,4 +60,5 @@ const postData = createSlice({
   },
 });
 
+export const { setStatusPostData } = postData.actions;
 export default postData.reducer;

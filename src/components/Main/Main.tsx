@@ -27,9 +27,6 @@ const Main: FC = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, window.scrollY);
-    // console.log(message);
-
     dispatch(fetchAPI(params));
   }, [params]);
 

@@ -9,7 +9,10 @@ import React, {
 import styles from './Modal.module.scss';
 import { CSSTransition } from 'react-transition-group';
 import Close from '../../icons/Close/Close';
-import { useAppSelector } from '../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { setStatusPostData } from '../../store/reducers/postData';
+import { fetchAPI } from '../../store/reducers/getData';
+import { setClearTaskFields } from '../../store/reducers/forms/addTaskFields';
 
 interface IModalProps {
   button: ReactNode;
@@ -20,8 +23,9 @@ interface IModalProps {
 
 const Modal: FC<IModalProps> = ({ button, children, keyValue, title }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
   const listRef: RefObject<HTMLDivElement> = createRef();
+  const dispatch = useAppDispatch();
+  const params = useAppSelector(state => state.params);
 
   const { status } = useAppSelector(state => state.postData);
 
@@ -29,15 +33,18 @@ const Modal: FC<IModalProps> = ({ button, children, keyValue, title }) => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const autoClose = () => {
-    setTimeout(() => {
-      setIsModalOpen(false);
-    }, 1000);
-
-    return (
-      <div className={styles.success}>Новое задание успешно добавлено</div>
-    );
-  };
+  useEffect(() => {
+    if (status === 'ok') {
+      setTimeout(() => {
+        setIsModalOpen(false);
+      }, 1000);
+      setTimeout(() => {
+        dispatch(setStatusPostData(''));
+      }, 1300);
+      dispatch(setClearTaskFields());
+      dispatch(fetchAPI(params));
+    }
+  }, [status]);
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -70,7 +77,9 @@ const Modal: FC<IModalProps> = ({ button, children, keyValue, title }) => {
         <div ref={listRef} className={styles.modalContainer}>
           <div className={styles.modalContent}>
             {status === 'ok' ? (
-              autoClose()
+              <div className={styles.success}>
+                Новое задание успешно добавлено
+              </div>
             ) : (
               <>
                 <h2 className={styles.modalTitle}>{title}</h2>

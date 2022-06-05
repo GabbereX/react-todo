@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, FormEvent, useEffect } from 'react';
+import React, { ChangeEvent, FC, FormEvent } from 'react';
 import styles from './AddTask.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { postAPI } from '../../../../store/reducers/postData';
@@ -57,13 +57,6 @@ const AddTask: FC = () => {
     dispatch(postAPI(task));
   };
 
-
-  // useEffect(() => {
-  //   console.log(typeof message === 'object' && message.text);
-  //   console.log(status);
-  //   // console.log(isLoading);
-  // }, [message]);
-
   return (
     <form onSubmit={handleSubmit} className={styles.addTask}>
       {fields.map(({ As, id, label, value, onChange }) => {
@@ -74,7 +67,10 @@ const AddTask: FC = () => {
             </label>
             <As
               className={styles.addTaskField}
-              style={{ borderColor: (message as Map)[id] ? '#f63e31' : '' }}
+              style={{
+                borderColor:
+                  (message as Map)[id] && status === 'error' ? '#f63e31' : '',
+              }}
               {...(As !== 'textarea' ? { type: 'text' } : {})}
               // @ts-ignore
               id={id}

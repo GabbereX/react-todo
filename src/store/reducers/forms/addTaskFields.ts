@@ -25,8 +25,14 @@ const addTaskFields = createSlice({
     textField(state, action: PayloadAction<string>) {
       state.text = action.payload;
     },
+    setClearTaskFields(state) {
+      state.username = '';
+      state.email = '';
+      state.text = '';
+    },
   },
 });
 
-export const { usernameField, emailField, textField } = addTaskFields.actions;
+export const { usernameField, emailField, textField, setClearTaskFields } =
+  addTaskFields.actions;
 export default addTaskFields.reducer;
