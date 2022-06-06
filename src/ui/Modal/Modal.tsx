@@ -19,6 +19,7 @@ interface IModalProps {
   title: string;
   clearStatusAndFields: () => void;
   status: string;
+  successMessage: string;
 }
 
 const Modal: FC<IModalProps> = ({
@@ -27,7 +28,8 @@ const Modal: FC<IModalProps> = ({
   keyValue,
   title,
   clearStatusAndFields,
-  status
+  status,
+  successMessage,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const listRef: RefObject<HTMLDivElement> = createRef();
@@ -79,9 +81,7 @@ const Modal: FC<IModalProps> = ({
         <div ref={listRef} className={styles.modalContainer}>
           <div className={styles.modalContent}>
             {status === 'ok' ? (
-              <div className={styles.success}>
-                Новое задание успешно добавлено
-              </div>
+              <div className={styles.success}>{successMessage}</div>
             ) : (
               <>
                 <h2 className={styles.modalTitle}>{title}</h2>

@@ -16,7 +16,7 @@
       flex-direction: column;
       margin-bottom: 20px;
       position: relative;
-      &:nth-child(3) {
+      &:last-of-type {
         margin-bottom: 40px;
       }
       & > textarea {

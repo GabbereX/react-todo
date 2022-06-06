@@ -3,9 +3,9 @@ import styles from './Options.module.scss';
 import Modal from '../../../ui/Modal/Modal';
 import AddTask from './AddTask/AddTask';
 import Sort from './Sort/Sort';
-import {setStatusPostData} from "../../../store/reducers/postData";
-import {setClearTaskFields} from "../../../store/reducers/forms/addTaskFields";
-import {useAppDispatch, useAppSelector} from "../../../hooks/redux";
+import { setStatusPostData } from '../../../store/reducers/postData';
+import { setClearTaskFields } from '../../../store/reducers/forms/addTaskFields';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 
 const Options: FC = () => {
   const { status } = useAppSelector(state => state.postData);
@@ -16,7 +16,7 @@ const Options: FC = () => {
       dispatch(setStatusPostData(''));
     }, 1300);
     dispatch(setClearTaskFields());
-  }
+  };
 
   return (
     <div className={styles.options}>
@@ -26,6 +26,7 @@ const Options: FC = () => {
         title={'Добавить новое задание'}
         clearStatusAndFields={clearStatusAndFields}
         status={status}
+        successMessage={'Новое задание успешно добавлено'}
       >
         <AddTask />
       </Modal>

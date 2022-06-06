@@ -3,12 +3,16 @@ import getData from './reducers/getData';
 import postData from './reducers/postData';
 import addTaskFields from './reducers/forms/addTaskFields';
 import params from './reducers/params';
+import login from './reducers/login';
+import authorizationFields from "./reducers/forms/authorizationFields";
 
 const rootReducer = combineReducers({
   getData,
   postData,
   addTaskFields,
+  authorizationFields,
   params,
+  login,
 });
 
 const setupStore = () => {

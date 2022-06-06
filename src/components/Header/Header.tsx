@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Header.module.scss';
 import Logo from "../../icons/Logo/Logo";
+import Authorization from "./Authorization/Authorization";
 
 const Header: FC = () => {
   return (
@@ -12,9 +13,7 @@ const Header: FC = () => {
             Simple Todo
           </div>
         </div>
-        <a href='http://localhost:3000/#' className={styles.headerAuth}>
-          Login
-        </a>
+        <Authorization />
       </div>
     </header>
   );
