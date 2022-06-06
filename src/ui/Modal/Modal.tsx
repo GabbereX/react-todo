@@ -9,15 +9,13 @@ import React, {
 import styles from './Modal.module.scss';
 import { CSSTransition } from 'react-transition-group';
 import Close from '../../icons/Close/Close';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchAPI } from '../../store/reducers/getData';
 
 interface IModalProps {
   button: ReactNode;
   children: ReactNode;
   keyValue: string;
   title: string;
-  clearStatusAndFields: () => void;
+  additionalActions: () => void;
   status: string;
   successMessage: string;
 }
@@ -27,14 +25,12 @@ const Modal: FC<IModalProps> = ({
   children,
   keyValue,
   title,
-  clearStatusAndFields,
+  additionalActions,
   status,
   successMessage,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const listRef: RefObject<HTMLDivElement> = createRef();
-  const dispatch = useAppDispatch();
-  const params = useAppSelector(state => state.params);
 
   const handleOpen = () => {
     setIsModalOpen(!isModalOpen);
@@ -45,8 +41,7 @@ const Modal: FC<IModalProps> = ({
       setTimeout(() => {
         setIsModalOpen(false);
       }, 1000);
-      clearStatusAndFields();
-      dispatch(fetchAPI(params));
+      additionalActions();
     }
   }, [status]);
 

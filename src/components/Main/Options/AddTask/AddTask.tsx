@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, FormEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { postAPI } from '../../../../store/reducers/postData';
+import { postAPI } from '../../../../store/reducers/api/postData';
 import {
   emailField,
   textField,

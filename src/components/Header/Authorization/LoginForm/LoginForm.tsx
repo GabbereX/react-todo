@@ -6,13 +6,15 @@ import {
   usernameAuthField,
 } from '../../../../store/reducers/forms/authorizationFields';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
-import { loginAPI } from '../../../../store/reducers/login';
+import { getTokenAPI } from '../../../../store/reducers/api/getToken';
 
 const LoginForm: FC = () => {
   const { username, password } = useAppSelector(
     state => state.authorizationFields
   );
-  const { isLoading, status, message } = useAppSelector(state => state.login);
+  const { isLoading, status, message } = useAppSelector(
+    state => state.getToken
+  );
   const dispatch = useAppDispatch();
 
   const fields = [
@@ -41,7 +43,7 @@ const LoginForm: FC = () => {
       password,
     };
 
-    dispatch(loginAPI(loginValues));
+    dispatch(getTokenAPI(loginValues));
   };
 
   return (

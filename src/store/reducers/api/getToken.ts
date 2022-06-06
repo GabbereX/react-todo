@@ -1,28 +1,26 @@
-import { ITask } from '../../interfaces/ITasks';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
-import { IPostDataAnswer } from '../../interfaces/IPostDataAnswer';
+import { ILogin, ILoginValues } from '../../../interfaces/ILogin';
 
-const initialState: IPostDataAnswer = {
+const initialState: ILogin = {
   message: {},
   isLoading: false,
   status: '',
 };
 
-export const postAPI = createAsyncThunk(
-  'data/postAPI',
-  async (task: ITask, { rejectWithValue }) => {
+export const getTokenAPI = createAsyncThunk(
+  'getTokenAPI',
+  async (loginValues: ILoginValues, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        'https://uxcandy.com/~shapoval/test-task-backend/v2/create?developer=Gabber',
-        task,
+        'https://uxcandy.com/~shapoval/test-task-backend/v2/login?developer=Gabber',
+        loginValues,
         {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
         }
       );
-
       return response.data;
     } catch (err: any | AxiosError) {
       return rejectWithValue('Ошибка! Сервер не отвечает, попробуйте позже');
@@ -30,27 +28,27 @@ export const postAPI = createAsyncThunk(
   }
 );
 
-const postData = createSlice({
-  name: 'postData',
+const getToken = createSlice({
+  name: 'getToken',
   initialState,
   reducers: {
-    setStatusPostData(state, action: PayloadAction<string>) {
+    setStatusGetToken(state, action: PayloadAction<string>) {
       state.status = action.payload;
     },
+    setToken(state, action: PayloadAction<string>) {
+      state.message.token = action.payload
+    }
   },
   extraReducers: {
-    [postAPI.pending.type]: state => {
+    [getTokenAPI.pending.type]: state => {
       state.isLoading = true;
     },
-    [postAPI.fulfilled.type]: (
-      state,
-      action: PayloadAction<IPostDataAnswer>
-    ) => {
+    [getTokenAPI.fulfilled.type]: (state, action: PayloadAction<ILogin>) => {
       state.isLoading = false;
       state.status = action.payload.status;
       state.message = action.payload.message;
     },
-    [postAPI.rejected.type]: (state, action: PayloadAction<string>) => {
+    [getTokenAPI.rejected.type]: (state, action: PayloadAction<ILoginValues>) => {
       state.isLoading = false;
       state.status = 'error';
       state.message = action.payload;
@@ -58,5 +56,5 @@ const postData = createSlice({
   },
 });
 
-export const { setStatusPostData } = postData.actions;
-export default postData.reducer;
+export const { setStatusGetToken, setToken } = getToken.actions;
+export default getToken.reducer;

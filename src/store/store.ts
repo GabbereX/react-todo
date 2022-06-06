@@ -1,18 +1,18 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import getData from './reducers/getData';
-import postData from './reducers/postData';
+import getData from './reducers/api/getData';
+import postData from './reducers/api/postData';
 import addTaskFields from './reducers/forms/addTaskFields';
 import params from './reducers/params';
-import login from './reducers/login';
-import authorizationFields from "./reducers/forms/authorizationFields";
+import authorizationFields from './reducers/forms/authorizationFields';
+import getToken from './reducers/api/getToken';
 
 const rootReducer = combineReducers({
   getData,
   postData,
+  getToken,
+  params,
   addTaskFields,
   authorizationFields,
-  params,
-  login,
 });
 
 const setupStore = () => {

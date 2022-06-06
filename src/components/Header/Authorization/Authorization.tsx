@@ -3,35 +3,44 @@ import styles from './Authorization.module.scss';
 import Modal from '../../../ui/Modal/Modal';
 import LoginForm from './LoginForm/LoginForm';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
-import { setClearTaskFields } from '../../../store/reducers/forms/addTaskFields';
-import { setStatusLogin } from '../../../store/reducers/login';
+import {
+  setStatusGetToken,
+  setToken,
+} from '../../../store/reducers/api/getToken';
+import { setClearAuthFields } from '../../../store/reducers/forms/authorizationFields';
 
 const Authorization: FC = () => {
-  const { status } = useAppSelector(state => state.login);
+  const { status, message } = useAppSelector(state => state.getToken);
   const dispatch = useAppDispatch();
 
-  const clearStatusAndFields = () => {
+  const additionalActions = () => {
     setTimeout(() => {
-      dispatch(setStatusLogin(''));
+      dispatch(setStatusGetToken(''));
     }, 1300);
-    dispatch(setClearTaskFields());
+
+    document.cookie = `token=${message.token}; max-age=86400`;
+
+    dispatch(setToken(message.token || ''));
+    dispatch(setClearAuthFields());
   };
 
   return (
-    <Modal
-      button={
-        <button className={styles.auth}>
-          Login
-        </button>
-      }
-      keyValue={'authorization'}
-      title={'Авторизаця'}
-      clearStatusAndFields={clearStatusAndFields}
-      status={status}
-      successMessage={'Вы успешно вошли в аккаунт'}
-    >
-      <LoginForm />
-    </Modal>
+    <>
+      {message.token ? (
+        <div className={styles.authSuccess}>Привет, admin</div>
+      ) : (
+        <Modal
+          button={<button className={styles.auth}>Login</button>}
+          keyValue={'authorization'}
+          title={'Авторизаця'}
+          additionalActions={additionalActions}
+          status={status}
+          successMessage={'Вы успешно вошли в аккаунт'}
+        >
+          <LoginForm />
+        </Modal>
+      )}
+    </>
   );
 };
 

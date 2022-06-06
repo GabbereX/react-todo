@@ -1,10 +1,12 @@
 import React, { FC, useEffect } from 'react';
 import styles from './Main.module.scss';
 import { ITasks } from '../../interfaces/ITasks';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import { fetchAPI } from '../../store/reducers/getData';
 import Options from './Options/Options';
 import TaskList from './TaskList/TaskList';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { fetchAPI } from '../../store/reducers/api/getData';
+import { getCookie } from '../../utils/getCookie';
+import { setToken } from '../../store/reducers/api/getToken';
 
 const Main: FC = () => {
   const { isLoading, status, message } = useAppSelector(state => state.getData);
@@ -25,6 +27,11 @@ const Main: FC = () => {
       );
     }
   };
+
+  useEffect(() => {
+    const token = getCookie('token');
+    token && dispatch(setToken(token));
+  }, []);
 
   useEffect(() => {
     dispatch(fetchAPI(params));

@@ -1,10 +1,11 @@
 export interface ILoginValues {
-  username: string;
-  password: string;
+  username?: string;
+  password?: string;
+  token?: string;
 }
 
 export interface ILogin {
-  message: ILoginValues | {};
+  message: ILoginValues;
   isLoading: boolean;
   status: string;
 }

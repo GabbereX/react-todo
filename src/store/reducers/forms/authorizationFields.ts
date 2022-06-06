@@ -20,13 +20,13 @@ const authorizationFields = createSlice({
     passwordAuthField(state, action: PayloadAction<string>) {
       state.password = action.payload;
     },
-    setClearTaskFields(state) {
+    setClearAuthFields(state) {
       state.username = '';
       state.password = '';
     },
   },
 });
 
-export const { usernameAuthField, passwordAuthField, setClearTaskFields } =
+export const { usernameAuthField, passwordAuthField, setClearAuthFields } =
   authorizationFields.actions;
 export default authorizationFields.reducer;

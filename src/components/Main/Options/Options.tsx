@@ -3,18 +3,21 @@ import styles from './Options.module.scss';
 import Modal from '../../../ui/Modal/Modal';
 import AddTask from './AddTask/AddTask';
 import Sort from './Sort/Sort';
-import { setStatusPostData } from '../../../store/reducers/postData';
+import { setStatusPostData } from '../../../store/reducers/api/postData';
 import { setClearTaskFields } from '../../../store/reducers/forms/addTaskFields';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { fetchAPI } from '../../../store/reducers/api/getData';
 
 const Options: FC = () => {
   const { status } = useAppSelector(state => state.postData);
+  const params = useAppSelector(state => state.params);
   const dispatch = useAppDispatch();
 
-  const clearStatusAndFields = () => {
+  const additionalActions = () => {
     setTimeout(() => {
       dispatch(setStatusPostData(''));
     }, 1300);
+    dispatch(fetchAPI(params));
     dispatch(setClearTaskFields());
   };
 
@@ -24,7 +27,7 @@ const Options: FC = () => {
         button={<button className='defaultButton'>Новое задание</button>}
         keyValue={'newTask'}
         title={'Добавить новое задание'}
-        clearStatusAndFields={clearStatusAndFields}
+        additionalActions={additionalActions}
         status={status}
         successMessage={'Новое задание успешно добавлено'}
       >

@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
-import { ITasks } from '../../interfaces/ITasks';
-import { IParams } from '../../interfaces/IParams';
+import { ITasks } from '../../../interfaces/ITasks';
+import { IParams } from '../../../interfaces/IParams';
 
 interface IInitialState {
   message: ITasks | string;
