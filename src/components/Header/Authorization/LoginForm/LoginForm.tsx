@@ -47,11 +47,9 @@ const LoginForm: FC = () => {
   };
 
   return (
-    <ModalForm
-      fields={fields}
-      handleSubmit={handleSubmit}
-      answer={{ isLoading, status, message }}
-    />
+    <form onSubmit={handleSubmit} style={{ position: 'relative' }}>
+      <ModalForm fields={fields} answer={{ isLoading, status, message }} />
+    </form>
   );
 };
 

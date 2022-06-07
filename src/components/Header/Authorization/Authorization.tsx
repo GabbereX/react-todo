@@ -8,6 +8,7 @@ import {
   setToken,
 } from '../../../store/reducers/api/getToken';
 import { setClearAuthFields } from '../../../store/reducers/forms/authorizationFields';
+import {getCookie} from "../../../utils/getCookie";
 
 const Authorization: FC = () => {
   const { status, message } = useAppSelector(state => state.getToken);
@@ -20,13 +21,13 @@ const Authorization: FC = () => {
 
     document.cookie = `token=${message.token}; max-age=86400`;
 
-    dispatch(setToken(message.token || ''));
+    // dispatch(setToken(message.token || ''));
     dispatch(setClearAuthFields());
   };
 
   return (
     <>
-      {message.token ? (
+      {getCookie('token') ? (
         <div className={styles.authSuccess}>Привет, admin</div>
       ) : (
         <Modal

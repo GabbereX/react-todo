@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, FormEvent } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 import styles from './ModalForm.module.scss';
 import SpinPreloader from '../SpinPreloader/SpinPreloader';
 import { IMap } from '../../interfaces/IMap';
@@ -17,15 +17,14 @@ interface IField {
 
 interface IProps {
   fields: Array<IField>;
-  handleSubmit: (e: FormEvent) => void;
   answer: IPostDataAnswer;
 }
 
-const ModalForm: FC<IProps> = ({ fields, handleSubmit, answer }) => {
+const ModalForm: FC<IProps> = ({ fields, answer }) => {
   const { isLoading, status, message } = answer;
 
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
+    <>
       {fields.map(({ As, id, label, value, onChange }) => {
         return (
           <div key={id} className={styles.formFieldContainer}>
@@ -59,7 +58,7 @@ const ModalForm: FC<IProps> = ({ fields, handleSubmit, answer }) => {
         Отправить
       </button>
       {isLoading && <SpinPreloader />}
-    </form>
+    </>
   );
 };
 

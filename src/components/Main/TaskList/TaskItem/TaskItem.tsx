@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import styles from './TaskItem.module.scss';
 import { ITask } from '../../../../interfaces/ITasks';
+import { useAppSelector } from '../../../../hooks/redux';
+import EditItem from './EditItem/EditItem';
 
 interface IProps {
   task: ITask;
@@ -8,6 +10,7 @@ interface IProps {
 
 const TaskItem: FC<IProps> = ({ task }) => {
   const { status, text, email, username } = task;
+  const { message } = useAppSelector(state => state.getToken);
 
   return (
     <li className={styles.taskItem}>
@@ -31,6 +34,7 @@ const TaskItem: FC<IProps> = ({ task }) => {
           (status === 10 && 'Задача выполнена') ||
           (status === 11 && 'Задача отредактирована админом и выполнена')}
       </div>
+      {message.token && <EditItem task={task} />}
     </li>
   );
 };
