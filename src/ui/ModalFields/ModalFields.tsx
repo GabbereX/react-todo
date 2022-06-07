@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FC } from 'react';
-import styles from './ModalForm.module.scss';
+import styles from './ModalFields.module.scss';
 import SpinPreloader from '../SpinPreloader/SpinPreloader';
 import { IMap } from '../../interfaces/IMap';
 import { IPostDataAnswer } from '../../interfaces/IPostDataAnswer';
@@ -20,7 +20,7 @@ interface IProps {
   answer: IPostDataAnswer;
 }
 
-const ModalForm: FC<IProps> = ({ fields, answer }) => {
+const ModalFields: FC<IProps> = ({ fields, answer }) => {
   const { isLoading, status, message } = answer;
 
   return (
@@ -62,4 +62,4 @@ const ModalForm: FC<IProps> = ({ fields, answer }) => {
   );
 };
 
-export default ModalForm;
+export default ModalFields;

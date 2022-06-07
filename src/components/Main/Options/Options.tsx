@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Options.module.scss';
 import Modal from '../../../ui/Modal/Modal';
-import AddTask from './AddTask/AddTask';
+import AddTaskForm from './AddTaskForm/AddTaskForm';
 import Sort from './Sort/Sort';
 import { setStatusPostData } from '../../../store/reducers/api/postData';
 import { setClearTaskFields } from '../../../store/reducers/forms/addTaskFields';
@@ -31,7 +31,7 @@ const Options: FC = () => {
         status={status}
         successMessage={'Новое задание успешно добавлено'}
       >
-        <AddTask />
+        <AddTaskForm />
       </Modal>
       <Sort />
     </div>

@@ -4,7 +4,7 @@ import { ITask } from '../../../../../interfaces/ITasks';
 import Modal from '../../../../../ui/Modal/Modal';
 import { setStatusPostData } from '../../../../../store/reducers/api/postData';
 import { useAppDispatch } from '../../../../../hooks/redux';
-import EditItemContent from "./EditItemContent/EditItemContent";
+import EditItemForm from './EditItemForm/EditItemForm';
 
 interface IProps {
   task: ITask;
@@ -31,7 +31,7 @@ const EditItem: FC<IProps> = ({ task }) => {
       status={''}
       successMessage={'Задание успешно отредактировано'}
     >
-      <EditItemContent task={task} />
+      <EditItemForm task={task} />
     </Modal>
   );
 };

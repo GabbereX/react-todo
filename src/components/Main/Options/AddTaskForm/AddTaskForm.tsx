@@ -6,10 +6,10 @@ import {
   textField,
   usernameField,
 } from '../../../../store/reducers/forms/addTaskFields';
-import ModalForm from '../../../../ui/ModalForm/ModalForm';
-import styles from "../../../../ui/ModalForm/ModalForm.module.scss";
+// import styles from "../../../../ui/ModalFields/ModalForm.module.scss";
+import ModalFields from "../../../../ui/ModalFields/ModalFields";
 
-const AddTask: FC = () => {
+const AddTaskForm: FC = () => {
   const { username, email, text } = useAppSelector(
     state => state.addTaskFields
   );
@@ -58,7 +58,7 @@ const AddTask: FC = () => {
 
   return (
     <form onSubmit={handleSubmit} style={{position: 'relative'}}>
-    <ModalForm
+    <ModalFields
       fields={fields}
       answer={{ isLoading, status, message }}
     />
@@ -66,4 +66,4 @@ const AddTask: FC = () => {
   );
 };
 
-export default AddTask;
+export default AddTaskForm;

@@ -5,7 +5,7 @@ interface IProps {
   task: ITask;
 }
 
-const EditItemContent: FC<IProps> = ({ task }) => {
+const EditItemForm: FC<IProps> = ({ task }) => {
   const { id, status, text, email, username } = task;
 
   const handleSubmit = (e: FormEvent) => {
@@ -24,4 +24,4 @@ const EditItemContent: FC<IProps> = ({ task }) => {
   </form>;
 };
 
-export default EditItemContent;
+export default EditItemForm;

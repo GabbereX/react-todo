@@ -1,12 +1,13 @@
 import React, { ChangeEvent, FC, FormEvent } from 'react';
 // import styles from './LoginForm.module.scss';
-import ModalForm from '../../../../ui/ModalForm/ModalForm';
+
 import {
   passwordAuthField,
   usernameAuthField,
 } from '../../../../store/reducers/forms/authorizationFields';
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { getTokenAPI } from '../../../../store/reducers/api/getToken';
+import ModalFields from '../../../../ui/ModalFields/ModalFields';
 
 const LoginForm: FC = () => {
   const { username, password } = useAppSelector(
@@ -48,7 +49,7 @@ const LoginForm: FC = () => {
 
   return (
     <form onSubmit={handleSubmit} style={{ position: 'relative' }}>
-      <ModalForm fields={fields} answer={{ isLoading, status, message }} />
+      <ModalFields fields={fields} answer={{ isLoading, status, message }} />
     </form>
   );
 };
