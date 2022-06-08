@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/react-todo/static/css/main.281cd77b.css",
+    "main.js": "/react-todo/static/js/main.d52788e0.js",
+    "static/media/montserrat-extrabold.woff": "/react-todo/static/media/montserrat-extrabold.907a0e71857f0f0dcbd1.woff",
+    "static/media/montserrat-bold.woff": "/react-todo/static/media/montserrat-bold.a0476d747c0f6e070c17.woff",
+    "static/media/montserrat-regular.woff": "/react-todo/static/media/montserrat-regular.2ca0efcf677a8acec59e.woff",
+    "static/media/montserrat-semibold.woff": "/react-todo/static/media/montserrat-semibold.cba9548d17bd81c4621c.woff",
+    "static/media/montserrat-extrabold.woff2": "/react-todo/static/media/montserrat-extrabold.3d3759d6e71a78c1618f.woff2",
+    "static/media/montserrat-bold.woff2": "/react-todo/static/media/montserrat-bold.5fc4931b7448a2ea0e59.woff2",
+    "static/media/montserrat-regular.woff2": "/react-todo/static/media/montserrat-regular.d40b12bbf0a1004eb34f.woff2",
+    "static/media/montserrat-semibold.woff2": "/react-todo/static/media/montserrat-semibold.e65d18ff300db046ee6d.woff2",
+    "index.html": "/react-todo/index.html",
+    "main.281cd77b.css.map": "/react-todo/static/css/main.281cd77b.css.map",
+    "main.d52788e0.js.map": "/react-todo/static/js/main.d52788e0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.281cd77b.css",
+    "static/js/main.d52788e0.js"
+  ]
+}
