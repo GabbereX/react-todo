@@ -41,7 +41,12 @@ const DropDown: FC<IDropDownProps> = ({ button, children, keyValue }) => {
   }, [isDropDownOpen]);
 
   return (
-    <div key={keyValue} onClick={handleOpen} ref={wraperRef}>
+    <div
+      key={keyValue}
+      onClick={handleOpen}
+      ref={wraperRef}
+      style={{ zIndex: '50' }}
+    >
       <CSSTransition
         nodeRef={buttonRef}
         in={isChecked}

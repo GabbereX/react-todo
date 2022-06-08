@@ -15,19 +15,6 @@
   padding: 18px 15px 15px 15px;
   font-size: 12px;
   border-bottom: 1px solid var(--yellow);
-  &Separator {
-    padding: 0 10px;
-  }
-  &Email {
-    color: var(--orange);
-    transition: color 0.3s ease;
-    &:hover {
-      color: var(--red);
-    }
-  }
-  &Username {
-    font-weight: 600;
-  }
 }
 
 .center {

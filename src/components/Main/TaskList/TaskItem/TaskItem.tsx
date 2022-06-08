@@ -3,6 +3,7 @@ import styles from './TaskItem.module.scss';
 import { ITask } from '../../../../interfaces/ITasks';
 import { useAppSelector } from '../../../../hooks/redux';
 import EditItem from './EditItem/EditItem';
+import Person from "./Person/Person";
 
 interface IProps {
   task: ITask;
@@ -15,11 +16,7 @@ const TaskItem: FC<IProps> = ({ task }) => {
   return (
     <li className={styles.taskItem}>
       <div className={styles.top}>
-        <span className={styles.topUsername}>{username}</span>
-        <span className={styles.topSeparator}>|</span>
-        <a href={`mailto:${email}`} className={styles.topEmail}>
-          {email}
-        </a>
+        <Person email={email || ''} username={username || ''} />
       </div>
       <div className={styles.center}>{text}</div>
       <div

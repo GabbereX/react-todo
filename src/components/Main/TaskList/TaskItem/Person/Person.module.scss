@@ -1,0 +1,15 @@
+.person {
+  &Separator {
+    padding: 0 10px;
+  }
+  &Email {
+    color: var(--orange);
+    transition: color 0.3s ease;
+    &:hover {
+      color: var(--red);
+    }
+  }
+  &Username {
+    font-weight: 600;
+  }
+}
