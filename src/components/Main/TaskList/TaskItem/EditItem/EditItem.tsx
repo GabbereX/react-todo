@@ -2,22 +2,27 @@ import React, { FC } from 'react';
 import styles from './EditItem.module.scss';
 import { ITask } from '../../../../../interfaces/ITasks';
 import Modal from '../../../../../ui/Modal/Modal';
-import { setStatusPostData } from '../../../../../store/reducers/api/postData';
-import { useAppDispatch } from '../../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../../../hooks/redux';
 import EditItemForm from './EditItemForm/EditItemForm';
+import { setStatusEditData } from '../../../../../store/reducers/api/editData';
+import { fetchAPI } from '../../../../../store/reducers/api/getData';
 
 interface IProps {
   task: ITask;
 }
 
 const EditItem: FC<IProps> = ({ task }) => {
-  const { id, status, text, email, username } = task;
+  const { id } = task;
+  const { status } = useAppSelector(state => state.editData);
+  const params = useAppSelector(state => state.params);
   const dispatch = useAppDispatch();
 
   const additionalActions = () => {
     setTimeout(() => {
-      // dispatch(setStatusPostData(''));
+      dispatch(setStatusEditData(''));
     }, 1300);
+
+    dispatch(fetchAPI(params));
   };
 
   return (
@@ -28,7 +33,7 @@ const EditItem: FC<IProps> = ({ task }) => {
       keyValue={`task_${id}`}
       title={'Редактирование задания'}
       additionalActions={additionalActions}
-      status={''}
+      status={status}
       successMessage={'Задание успешно отредактировано'}
     >
       <EditItemForm task={task} />

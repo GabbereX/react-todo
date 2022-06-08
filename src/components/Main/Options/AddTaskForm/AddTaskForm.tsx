@@ -6,8 +6,8 @@ import {
   textField,
   usernameField,
 } from '../../../../store/reducers/forms/addTaskFields';
-// import styles from "../../../../ui/ModalFields/ModalForm.module.scss";
-import ModalFields from "../../../../ui/ModalFields/ModalFields";
+import ModalFields from '../../../../ui/ModalFields/ModalFields';
+import SubmitButton from '../../../../ui/SubmitButton/SubmitButton';
 
 const AddTaskForm: FC = () => {
   const { username, email, text } = useAppSelector(
@@ -57,11 +57,9 @@ const AddTaskForm: FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{position: 'relative'}}>
-    <ModalFields
-      fields={fields}
-      answer={{ isLoading, status, message }}
-    />
+    <form onSubmit={handleSubmit} style={{ position: 'relative' }}>
+      <ModalFields fields={fields} answer={{ isLoading, status, message }} />
+      <SubmitButton />
     </form>
   );
 };

@@ -8,6 +8,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { getTokenAPI } from '../../../../store/reducers/api/getToken';
 import ModalFields from '../../../../ui/ModalFields/ModalFields';
+import SubmitButton from "../../../../ui/SubmitButton/SubmitButton";
 
 const LoginForm: FC = () => {
   const { username, password } = useAppSelector(
@@ -22,7 +23,7 @@ const LoginForm: FC = () => {
     {
       As: 'input',
       id: 'username',
-      label: 'Логин',
+      label: 'Логин:',
       onChange: (e: ChangeEvent<HTMLInputElement>) =>
         dispatch(usernameAuthField(e.target.value)),
       value: username,
@@ -30,7 +31,7 @@ const LoginForm: FC = () => {
     {
       As: 'input',
       id: 'password',
-      label: 'Пароль',
+      label: 'Пароль:',
       onChange: (e: ChangeEvent<HTMLInputElement>) =>
         dispatch(passwordAuthField(e.target.value)),
       value: password,
@@ -50,6 +51,7 @@ const LoginForm: FC = () => {
   return (
     <form onSubmit={handleSubmit} style={{ position: 'relative' }}>
       <ModalFields fields={fields} answer={{ isLoading, status, message }} />
+      <SubmitButton />
     </form>
   );
 };

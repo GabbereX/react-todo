@@ -9,6 +9,12 @@ import React, {
 import styles from './Modal.module.scss';
 import { CSSTransition } from 'react-transition-group';
 import Close from '../../icons/Close/Close';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux';
+import { setStatusGetToken, setToken } from '../../store/reducers/api/getToken';
+import {
+  setMessageEditData,
+  setStatusEditData,
+} from '../../store/reducers/api/editData';
 
 interface IModalProps {
   button: ReactNode;
@@ -32,12 +38,34 @@ const Modal: FC<IModalProps> = ({
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const listRef: RefObject<HTMLDivElement> = createRef();
 
+  const { message } = useAppSelector(state => state.getToken);
+  const { message: messageEditData } = useAppSelector(state => state.editData);
+  const dispatch = useAppDispatch();
+  const chekErrorTokenMessage =
+    typeof messageEditData === 'object'
+      ? messageEditData.token
+      : messageEditData;
+
   const handleOpen = () => {
     setIsModalOpen(!isModalOpen);
   };
 
   useEffect(() => {
-    if (status === 'ok') {
+    if (message.token === 'expired') {
+      setTimeout(() => {
+        setIsModalOpen(false);
+      }, 1000);
+      setTimeout(() => {
+        dispatch(setToken(''));
+        dispatch(setStatusEditData(''));
+        dispatch(setMessageEditData(''));
+        dispatch(setStatusGetToken(''));
+      }, 1300);
+    }
+  }, [message]);
+
+  useEffect(() => {
+    if (status === 'ok' && isModalOpen) {
       setTimeout(() => {
         setIsModalOpen(false);
       }, 1000);
@@ -75,8 +103,15 @@ const Modal: FC<IModalProps> = ({
       >
         <div ref={listRef} className={styles.modalContainer}>
           <div className={styles.modalContent}>
-            {status === 'ok' ? (
-              <div className={styles.success}>{successMessage}</div>
+            {status === 'ok' || message.token === 'expired' ? (
+              <div
+                className={styles.success}
+                style={{ color: message.token === 'expired' ? 'red' : '' }}
+              >
+                {message.token === 'expired' && chekErrorTokenMessage
+                  ? chekErrorTokenMessage
+                  : successMessage}
+              </div>
             ) : (
               <>
                 <h2 className={styles.modalTitle}>{title}</h2>

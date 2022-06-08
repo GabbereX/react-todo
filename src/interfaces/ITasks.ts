@@ -4,6 +4,7 @@ export interface ITask {
   email?: string;
   text?: string;
   status?: number;
+  token?: string;
 }
 
 export interface ITasks {

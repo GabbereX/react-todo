@@ -12,7 +12,7 @@ interface IField {
   onChange: (e: ChangeEvent<HTMLInputElement>) => {
     payload: string;
     type: string;
-  };
+  } | void;
 }
 
 interface IProps {
@@ -22,41 +22,47 @@ interface IProps {
 
 const ModalFields: FC<IProps> = ({ fields, answer }) => {
   const { isLoading, status, message } = answer;
+  const checkErrorMessageObject =
+    typeof message === 'object' && status === 'error';
+  const checkErrorMessageString =
+    typeof message === 'string' && status === 'error';
 
   return (
     <>
-      {fields.map(({ As, id, label, value, onChange }) => {
+      {fields.map(({ As, id, label, value, onChange }, index) => {
         return (
-          <div key={id} className={styles.formFieldContainer}>
+          <div
+            key={id}
+            className={styles.formFieldContainer}
+            style={{ marginBottom: fields.length === index + 1 ? '40px' : '' }}
+          >
             <label htmlFor={id} className={styles.formFieldLabel}>
               {label}
             </label>
             <As
               className={styles.formField}
               style={{
-                borderColor:
-                  (message as IMap)[id] && status === 'error' ? '#f63e31' : '',
+                borderColor: checkErrorMessageObject ? '#f63e31' : '',
               }}
-              {...(As !== 'textarea' ? { type: 'text' } : {})}
+              {...(As !== 'textarea'
+                ? { type: id === 'password' ? 'password' : 'text' }
+                : {})}
               // @ts-ignore
               id={id}
               value={value}
               onChange={onChange}
             />
-            {typeof message === 'object' && status === 'error' && (
+            {checkErrorMessageObject && (
               <div className={styles.error}>{(message as IMap)[id]}</div>
             )}
           </div>
         );
       })}
-      {typeof message === 'string' && status === 'error' && (
+      {checkErrorMessageString && (
         <div className={`${styles.error} ${styles.errorServerAnsver}`}>
           {message}
         </div>
       )}
-      <button className={`defaultButton ${styles.formButton}`}>
-        Отправить
-      </button>
       {isLoading && <SpinPreloader />}
     </>
   );
