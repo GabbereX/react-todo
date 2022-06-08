@@ -26,9 +26,8 @@ export const editAPI = createAsyncThunk(
   async ({ task, id, token }: IAttributes, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        `https://uxcandy.com/~shapoval/test-task-backend/v2/edit/${id}?developer=Gabber`,
+        `https://uxcandy.com/~shapoval/test-task-backend/v2/edit/${id}?developer=AlexGabber`,
         {
-          // token: 'sdsdsdsd',
           token,
           text: task.text,
           status: task.status,

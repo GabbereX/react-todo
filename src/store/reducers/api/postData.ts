@@ -14,7 +14,7 @@ export const postAPI = createAsyncThunk(
   async (task: ITask, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        'https://uxcandy.com/~shapoval/test-task-backend/v2/create?developer=Gabber',
+        'https://uxcandy.com/~shapoval/test-task-backend/v2/create?developer=AlexGabber',
         task,
         {
           headers: {

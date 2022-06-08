@@ -19,7 +19,7 @@ export const fetchAPI = createAsyncThunk(
   'data/fetchAPI',
   async ({ page, sortField, sortDirection }: IParams, { rejectWithValue }) => {
     const link =
-      'https://uxcandy.com/~shapoval/test-task-backend/v2/?developer=Gabber';
+      'https://uxcandy.com/~shapoval/test-task-backend/v2/?developer=AlexGabber';
     const pageParam = page !== 1 ? `&page=${page}` : '';
     const sortFieldParam = `&sort_field=${sortField}`;
     const sortDirectionParam = `&sort_direction=${

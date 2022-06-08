@@ -13,7 +13,7 @@ export const getTokenAPI = createAsyncThunk(
   async (loginValues: ILoginValues, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        'https://uxcandy.com/~shapoval/test-task-backend/v2/login?developer=Gabber',
+        'https://uxcandy.com/~shapoval/test-task-backend/v2/login?developer=AlexGabber',
         loginValues,
         {
           headers: {
